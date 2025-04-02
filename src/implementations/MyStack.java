@@ -6,6 +6,8 @@ import utilities.Iterator;
 import utilities.StackADT;
 
 public class MyStack<E> implements StackADT<E> {
+    private static final long serialVersionUID = 1L; // 1 Long
+    
     private MyArrayList<E> stack;
 
     public MyStack() {
