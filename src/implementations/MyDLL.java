@@ -13,7 +13,7 @@ public class MyDLL<E> implements ListADT<E> {
     
     private static final long serialVersionUID = 1L;
     
-    private MyDLLNode<E> head;
+    public MyDLLNode<E> head;
     private MyDLLNode<E> tail;
     private int size;
     
@@ -21,8 +21,7 @@ public class MyDLL<E> implements ListADT<E> {
      * Default constructor creates an empty list.
      */
     public MyDLL() {
-        head = null;
-        tail = null;
+        head = tail = null;
         size = 0;
     }
 
@@ -33,8 +32,7 @@ public class MyDLL<E> implements ListADT<E> {
 
     @Override
     public void clear() {
-        head = null;
-        tail = null;
+        head = tail = null;
         size = 0;
     }
 
