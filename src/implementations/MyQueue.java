@@ -3,24 +3,22 @@ package implementations;
 import utilities.Iterator;
 import utilities.QueueADT;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 import exceptions.EmptyQueueException;
 
 public class MyQueue<E> implements QueueADT<E>
 {
-
 	private MyDLL<E> queue;
-//	private QueueIterator iterator;
 
 	public MyQueue() {
 		this.queue = new MyDLL<E>();
 	}
 	
-//	public void setIterator()
-//	{
-//		this.iterator = new QueueIterator();
-//	}
+	public MyQueue(int size) {
+		this.queue = new MyDLL<E>();
+	}
 	
 	@Override
 	public void enqueue(E toAdd) throws NullPointerException
@@ -52,9 +50,7 @@ public class MyQueue<E> implements QueueADT<E>
 	@Override
 	public void dequeueAll()
 	{
-		while (queue.get(0) != null) {
-			queue.remove(0);
-		}
+		queue.clear();
 	}
 
 	@Override
@@ -91,36 +87,62 @@ public class MyQueue<E> implements QueueADT<E>
 	public boolean equals(QueueADT<E> that)
 	{
 		// Checks if in same memory location
-		if (this == that) { return true; }
-//			
-//		while (thisIterator.hasNext() && thatIterator.hasNext())
-//		{
-//			if (thisIterator.next() != thatIterator.next())
-//			{
-//				return false;
-//			}
-//		}
+		if (this == that) 
+		{
+			return true; 
+		}
 		
+		if (that == null || this.size() != that.size())
+		{
+			return false;
+		}
+		
+		Iterator<E> thisIterator = this.iterator();
+	    Iterator<E> thatIterator = that.iterator();
+		
+		while (thisIterator.hasNext() && thatIterator.hasNext())
+		{
+			if (!thisIterator.next().equals(thatIterator.next()))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
 	public Object[] toArray()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return queue.toArray();
 	}
 
 	@Override
 	public E[] toArray(E[] holder) throws NullPointerException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		if (holder == null) 
+		{
+			throw new NullPointerException("Holding array cannot be null");
+		}
+		
+		int qsize = queue.size();
+		
+		if (holder.length != qsize)
+		{
+			E[] newHolder = Arrays.copyOf(holder, qsize);
+			return queue.toArray(newHolder);
+		}
+		
+	    for (int i = 0; i < qsize; i++) 
+	    {
+	        holder[i] = queue.get(i);
+	    }
+	    
+	    return holder;
 	}
 
 	@Override
 	public boolean isFull()
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -143,7 +165,6 @@ public class MyQueue<E> implements QueueADT<E>
 	// Class Declaration
 	private class QueueIterator implements Iterator<E> 
 	{	
-		// Index version
 		private int index = 0;
 		
 		public QueueIterator() { }
@@ -166,33 +187,6 @@ public class MyQueue<E> implements QueueADT<E>
 			}
 			return queue.get(index++);
 		}
-		
-		// MyDLLNode version
-//		private MyDLLNode<E> current;
-//		
-//		public QueueIterator() {
-//			current = queue.head;
-//		}
-//		
-//		public boolean hasNext()
-//		{
-//			if (current.getNext() == null)
-//			{
-//				return false;
-//			}
-//			return true;
-//		}
-//		
-//		public E next() throws NoSuchElementException
-//		{
-//			if (!hasNext()) {
-//				throw new NoSuchElementException();
-//			}
-//			
-//			E element = current.getNext().getElement();
-//			current = current.getNext();
-//			return element;
-//		}
 	}
 	
 }
