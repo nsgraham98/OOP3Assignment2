@@ -13,6 +13,7 @@ public class MyDLLNode<E> {
     /**
      * Creates a new node with the specified element.
      * 
+     * @author Ahmad
      * @param element The element to be stored in this node.
      */
     public MyDLLNode(E element) {
