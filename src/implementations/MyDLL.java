@@ -7,6 +7,7 @@ import utilities.ListADT;
 /**
  * Doubly Linked List implementation.
  * 
+ * @author Ahmad
  * @param <E> The type of elements this list holds.
  */
 public class MyDLL<E> implements ListADT<E> {
