@@ -8,6 +8,7 @@ import utilities.ListADT;
 /**
  * ArrayList implementation using an array as the underlying data structure.
  * 
+ * @author Ahmad
  * @param <E> The type of elements this list holds.
  */
 public class MyArrayList<E> implements ListADT<E> {
