@@ -10,6 +10,8 @@ import utilities.StackADT;
  * This class provides a LIFO (Last-In-First-Out) stack implementation
  * using the MyArrayList class as the underlying data structure.
  * 
+ * @author Shawn
+ *
  * @param <E> The type of elements this stack holds.
  * @version 1.0
  * @see utilities.StackADT
